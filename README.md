@@ -65,3 +65,23 @@ The complete command to solve the task is
 
 Protip
 Docker allows you to use $PWD as a placeholder for the current directory.
+
+## Step 6 - Running A Container In The Foreground
+Jane has been working with Redis as a background process. Jane wonders how containers work with foreground processes, such as ps or bash.
+
+Previously, Jane used the -d to execute the container in a detached, background, state. Without specifying this, the container would run in the foreground. If Jane wanted to interact with the container (for example, to access a bash shell) she could include the options -it.
+
+As well as defining whether the container runs in the background or foreground, certain images allow you to override the command used to launch the image. Being able to replace the default command makes it possible to have a single image that can be re-purposed in multiple ways. For example, the Ubuntu image can either run OS commands or run an interactive bash prompt using /bin/bash
+
+Example
+The command 
+
+	docker run ubuntu ps
+
+launches an Ubuntu container and executes the command ps to view all the processes running in a container.
+
+Using 
+	
+	docker run -it ubuntu bash 
+
+allows Jane to get access to a bash shell inside of a container.

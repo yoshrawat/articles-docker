@@ -45,3 +45,23 @@ After experimenting, Jane discovers that just using the option -p 6379 enables h
 While this works, she now doesn't know which port has been assigned. Thankfully, this is discovered via docker port redisDynamic 6379
 
 Jane also finds that listing the containers displays the port mapping information, docker ps
+
+
+## Step 5 - Persisting Data
+After working with containers for a few days, Jane realises that the data stored keeps being removed when she deletes and re-creates a container. Jane needs the data to be persisted and reused when she recreates a container.
+
+Containers are designed to be stateless. Binding directories (also known as volumes) is done using the option -v <host-dir>:<container-dir>. When a directory is mounted, the files which exist in that directory on the host can be accessed by the container and any data changed/written to the directory inside the container will be stored on the host. This allows you to upgrade or change containers without losing your data.
+
+Task
+Using the Docker Hub documentation for Redis, Jane has investigated that the official Redis image stores logs and data into a /data directory.
+
+Any data which needs to be saved on the Docker Host, and not inside containers, should be stored in
+		
+		/opt/docker/data/redis.
+
+The complete command to solve the task is 
+
+	docker run -d --name redisMapped -v /opt/docker/data/redis:/data redis
+
+Protip
+Docker allows you to use $PWD as a placeholder for the current directory.

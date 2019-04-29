@@ -32,3 +32,16 @@ Jane finds the best way to solve her problem of running Redis in the background,
 
 Protip
 By default, the port on the host is mapped to 0.0.0.0, which means all IP addresses. You can specify a particular IP address when you define the port mapping, for example, -p 127.0.0.1:6379:6379
+
+
+## Step 4 - Accessing Redis
+The problem with running processes on a fixed port is that you can only run one instance. Jane would prefer to run multiple Redis instances and configure the application depending on which port Redis is running on.
+
+Task
+After experimenting, Jane discovers that just using the option -p 6379 enables her to expose Redis but on a randomly available port. She decides to test her theory using  
+
+	docker run -d --name redisDynamic -p 6379 redis:latest
+
+While this works, she now doesn't know which port has been assigned. Thankfully, this is discovered via docker port redisDynamic 6379
+
+Jane also finds that listing the containers displays the port mapping information, docker ps

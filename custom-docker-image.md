@@ -27,3 +27,20 @@ You can view a list of all the images on the host using docker images.
 
 The built image will have the name webserver-image with a tag of v1.
 
+## Step 3 - Run
+The built Image can be launched in a consistent way to other Docker Images. When a container launches, it's sandboxed from other processes and networks on the host. When starting a container you need to give it permission and access to what it requires.
+
+For example, to open and bind to a network port on the host you need to provide the parameter -p <host-port>:<container-port>.
+
+Task
+Launch our newly built image providing the friendly name and tag. As it's a web server, bind port 80 to our host using the -p parameter.
+
+    docker run -d -p 80:80 webserver-image:v1
+
+Once started, you'll be able to access the results of port 80 via curl docker
+
+To render the requests in the browser use the following links
+
+    https://2886795358-80-frugo01.environments.katacoda.com/
+
+You now have a static HTML website being served by Nginx.
